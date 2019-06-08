@@ -39,6 +39,7 @@ export class RecipeEditComponent implements OnInit {
     if (this.editMode) {
       this.recipeService.updateRecipe(this.id, this.recipeForm.value);
     } else {
+      console.log(this.recipeForm.value)
       this.recipeService.addRecipe(this.recipeForm.value);
     }
     this.onCancel();
@@ -67,14 +68,16 @@ export class RecipeEditComponent implements OnInit {
   private initForm() {
     let recipeName = '';
     let recipeImagePath = '';
-    let recipeDescription = '';
+    let recipeHoldLevel = null;
+    let recipeScent='';
+    let recipePrice=null;
     let recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
       const recipe = this.recipeService.getRecipe(this.id);
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
-      recipeDescription = recipe.description;
+      recipeHoldLevel = recipe.holdlevel;
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
           recipeIngredients.push(
@@ -93,9 +96,12 @@ export class RecipeEditComponent implements OnInit {
     this.recipeForm = new FormGroup({
       'name': new FormControl(recipeName, Validators.required),
       'imagePath': new FormControl(recipeImagePath, Validators.required),
-      'description': new FormControl(recipeDescription, Validators.required),
-      'ingredients': recipeIngredients
+      'holdlevel': new FormControl(recipeHoldLevel, Validators.required),
+      'scent':new FormControl(recipeScent,Validators.required),
+      "price":new FormControl(recipePrice,Validators.required),
+      'ingredients': recipeIngredients,
+      
     });
   }
-
+  get formData(){return this.recipeForm.get('ingredients') as FormArray}
 }

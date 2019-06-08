@@ -43,21 +43,53 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="description">Description</label>
-            <textarea
-              type="text"
-              id="description"
+            <label for="holdlevel">Hold level</label>
+            <input
+              type="number"
+              id="holdlevel"
               class="form-control"
-              formControlName="description"
-              rows="6"></textarea>
+              required
+              min="0"
+              max="10"
+              formControlName="holdlevel">
           </div>
         </div>
       </div>
       <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="scent">Scent</label>
+            <input
+              type="text"
+              id="scent"
+              class="form-control"
+              required
+              formControlName="scent">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input
+              type="number"
+              id="price"
+              min="50000"
+              step="5000"
+              max="9999999"
+              class="form-control"
+              required
+              formControlName="price">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
         <div class="col-xs-12" formArrayName="ingredients">
           <div
             class="row"
-            *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index"
+            *ngFor="let ingredientCtrl of formData.controls; let i = index"
             [formGroupName]="i"
             style="margin-top: 10px;">
             <div class="col-xs-8">
@@ -79,6 +111,7 @@
                 (click)="onDeleteIngredient(i)">X</button>
             </div>
           </div>
+          
           <hr>
           <div class="row">
             <div class="col-xs-12">

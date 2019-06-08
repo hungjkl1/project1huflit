@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a routerLink="/" class="navbar-brand">Recipe Book</a>
+      <a routerLink="/" class="navbar-brand">Hẻm Pomade</a>
     </div>
 
     <div class="collapse navbar-collapse">
@@ -13,8 +13,8 @@
         <li class="dropdown" appDropdown>
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a style="cursor: pointer;">Save Data</a></li>
-            <li><a style="cursor: pointer;">Fetch Data</a></li>
+            <li><a style="cursor: pointer;" (click)="saveData()">Save Data</a></li>
+            <li><a style="cursor: pointer;" (click)="setData()">Fetch Data</a></li>
           </ul>
         </li>
       </ul>
